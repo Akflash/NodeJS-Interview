@@ -1,0 +1,78 @@
+body{
+    font-family:serif, Geneva, sans-serif;
+    background:#454545;
+    color:#FF9900;
+    width: 800px;
+    margin: 0 auto;
+    padding: 0;
+    }
+    .sort {
+    position:absolute;
+         
+         z-index:15;
+         top:50%;
+         left:50%;
+         margin:-150px 0 0 -400px;
+        background: white;
+        border: 1px double red;
+        border-radius: 5px;
+        box-shadow: 0 0 7px red;
+        color: #666;
+        padding: 5px 10px;
+        width: 250px;
+        outline: none;
+        font-family:serif, Geneva, sans-serif;
+    
+    }
+    .sort option:hover {
+      background-color: #CDD8E4;
+    }  
+    select.decorated option:hover {
+            box-shadow: 0 0 10px 100px #1882A8 inset;
+       }
+    #container{
+         position:absolute;
+         width:300px;
+         height:200px;
+         z-index:15;
+         top:50%;
+         left:50%;
+         margin:-100px 0 0 -150px;
+    
+    
+    }
+    #container .pagination ul li.inactive,
+    #container .pagination ul li.inactive:hover{
+        background-color:red;
+        color:red;
+        border:1px solid red;
+        cursor: default;
+    }
+    #container .data ul li{
+        list-style: none;
+        font-family: serif;
+        margin: 5px 0 5px 0;
+        color: red;
+        font-size: 13px;
+    }
+    #container .pagination{
+        width: 800px;
+        height: 25px;
+    }
+    #container .pagination ul li{
+        list-style: none;
+        float: left;
+        border: 1px solid red;
+        padding: 2px 6px 2px 6px;
+        margin: 0 3px 0 3px;
+        font-family: arial;
+        font-size: 14px;
+        color: red;
+        font-weight: bold;
+        background-color: #ffffff;
+    }
+    #container .pagination ul li:hover{
+        color: #fff;
+        background-color: red;
+        cursor: pointer;
+    }
