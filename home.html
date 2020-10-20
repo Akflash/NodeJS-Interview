@@ -1,0 +1,79 @@
+<html>
+
+<head>
+
+    <title>Home</title>
+    <link rel="stylesheet" type="text/css" href="home.css">
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            function loadData(page, value) {
+                $.ajax
+                    ({
+                        type: "POST",
+                        contentType: "application/json",
+                        url: "data",
+                        data: JSON.stringify({ page: page, dropvalue: value }),
+                        success: function (msg) {
+
+                            let s = msg["msg"],
+                                data = Object.values(s["data"]), start = s["start"], end = s["end"], page = s["page"]
+                            let keys = Object.keys(data[0])
+                            $("#container").ajaxComplete(function (event, request, settings) {
+
+                                let str = "";
+                                str = "<div class='data'><ul>"
+                                for (let i = 0; i < data.length; i++) {
+                                    let t1 = data[i][keys[0]], t2 = data[i][keys[1]]
+                                    str += `<li><b> ${t1} </b> ${t2} </li>`
+
+                                }
+                                str += " </ul></div>"
+                                str += "<div class='pagination'><ul>"
+                                for (let i = start; i <= end; i++) {
+                                    if (page == i)
+                                        str += `<li x= '${i}'style='color:#fff;background-color:#FF9900;' class='active'>${i}</li>`
+                                    else str += `<li x='${i}' class='active'>${i}</li>`
+                                }
+                                str += "</ul></div>"
+                                $("#container").html(str);
+                            });
+                        }
+                    });
+            }
+            loadData(1, '');
+            $('#container .pagination li.active').live('click', function () {
+                var page = $(this).attr('x');
+                var dvalue = $('#sort').val();
+                loadData(page, dvalue);
+
+            });
+
+            $("#sort").change(function () {
+                var value = $('#sort').val();
+                loadData(1, value);
+
+            });
+
+        });
+    </script>
+
+</head>
+
+<body>
+    <a style="float:right;text-decoration:none;color:#FF9900;" href="/logout">Logout</a><br /><br />
+    <select class="sort" id="sort" name="options">
+        <option>Recent Projects</option>
+        <option>Category Name</option>
+        <option>Username</option>
+        <option>Project Title</option>
+    </select>
+
+    <div id="container">
+        <div class="data"></div>
+        <div class="pagination"></div>
+    </div>
+</body>
+
+</html>
